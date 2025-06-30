@@ -10,6 +10,13 @@ import UserDashboard from './components/UserDashboard';
 import Register from './components/Register';
 import Footer from './components/Footer';
 import '../src/styles/global.css';
+import AppointmentPage from './pages/AppointmentPage';
+import './App.css';
+import WorkerManagementPage from './pages/WorkerManagementPage';
+import AddWorker from './components/AddWorker';
+import UpdateWorker from './components/UpdateWorker';
+
+
 
 const App: React.FC = () => {
   return (

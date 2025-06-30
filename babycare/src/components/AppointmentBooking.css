@@ -1,0 +1,48 @@
+.appointment-booking {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #e6f7ff; /* צבע רקע עדין ומרגיע */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif; /* גופן נקי ומודרני */
+}
+
+.appointment-booking h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff; /* צבע כותרת המתאים למרפאה */
+}
+
+.appointment-booking form {
+    display: flex;
+    flex-direction: column;
+}
+
+.appointment-booking input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #007bff; /* גבול בצבע כחלחל */
+    border-radius: 5px;
+    transition: border-color 0.3s; /* אפקט חלק למעבר גבול */
+}
+
+.appointment-booking input:focus {
+    border-color: #0056b3; /* צבע גבול בכחול כהה יותר בעת פוקוס */
+    outline: none;
+}
+
+.appointment-booking button {
+    padding: 12px;
+    background-color: #007bff; /* צבע כפתור תואם */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* אפקט חלק למעבר צבע רקע */
+}
+
+.appointment-booking button:hover {
+    background-color: #0056b3; /* צבע רקע כהה יותר בעת ריחוף */
+}
