@@ -1,30 +1,71 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSendVerificationCodeMutation, useValidateOTPMutation } from '../features/auth/authApi'; // Adjust the import path
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { useSendVerificationCodeMutation, useValidateOTPMutation } from "../features/auth/authApi";
+
+// const OtpVerification: React.FC<{ email: string }> = ({ email }) => {
+//   const [otp, setOtp] = useState("");
+//   const [sendVerificationCode] = useSendVerificationCodeMutation();
+//   const [validateOTP] = useValidateOTPMutation();
+//   const navigate = useNavigate();
+
+//   const handleSendCode = async () => {
+//     await sendVerificationCode({ email });
+//   };
+
+//   const handleValidateOTP = async () => {
+//     const response = await validateOTP({ email, otp });
+//     if (response.data?.success) {
+//       navigate("/user-dashboard");
+//     } else {
+//       alert(response.error);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <h1>אימות קוד</h1>
+//       <button onClick={handleSendCode}>שלח קוד אימות</button>
+//       <input
+//         type="text"
+//         value={otp}
+//         onChange={(e) => setOtp(e.target.value)}
+//         placeholder="הכנס קוד אימות"
+//       />
+//       <button onClick={handleValidateOTP}>אמת קוד</button>
+//     </div>
+//   );
+// };
+
+// export default OtpVerification;
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSendVerificationCodeMutation, useValidateOTPMutation } from "../features/auth/authApi";
 
 const OtpVerification: React.FC<{ email: string }> = ({ email }) => {
-  const [otp, setOtp] = useState('');
+  const [otp, setOtp] = useState("");
+  const [isCodeSent, setIsCodeSent] = useState(false); 
   const [sendVerificationCode] = useSendVerificationCodeMutation();
   const [validateOTP] = useValidateOTPMutation();
   const navigate = useNavigate();
 
   const handleSendCode = async () => {
     await sendVerificationCode({ email });
+    setIsCodeSent(true); 
   };
 
   const handleValidateOTP = async () => {
     const response = await validateOTP({ email, otp });
     if (response.data?.success) {
-      navigate('/dashboard'); // Navigate to user dashboard
+      navigate("/user-dashboard");
     } else {
-      alert(response.error); // Handle error
+      alert(response.error);
     }
   };
 
   return (
     <div>
       <h1>אימות קוד</h1>
-      <button onClick={handleSendCode}>שלח קוד אימות</button>
+      <button onClick={handleSendCode} disabled={isCodeSent}>שלח קוד אימות</button>
       <input
         type="text"
         value={otp}
