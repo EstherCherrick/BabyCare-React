@@ -7,6 +7,9 @@ const Home: React.FC = () => {
   const navigateToPersonalArea = () => {
     navigate('/login'); // Navigate to the personal area (login page)
   };
+   const navigateToWorkersDashboard = () => {
+    navigate('/workers');
+  };
 
   return (
     <div style={{ textAlign: 'center', padding: '50px', backgroundColor: '#f5f5f5' }}>
@@ -16,6 +19,9 @@ const Home: React.FC = () => {
         onClick={navigateToPersonalArea} >
         אזור אישי
       </button>
+       <button onClick={navigateToWorkersDashboard} style={{ marginRight: '10px' }}>
+          ניהול עובדים
+        </button>
     </div>
   );
 };

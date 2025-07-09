@@ -15,6 +15,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         if (response.userExists) {
             setTokenToCookie(response.token); 
             setUserToCookie(form.email); 
+     
             navigate(`/otp-verification/${form.email}`); 
         } else {
             alert(response.message || "User does not exist."); 

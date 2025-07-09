@@ -10,8 +10,8 @@ export const store = configureStore({
     [workersApi.reducerPath]: workersApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
-   getDefaultMiddleware().concat(workersApi.middleware),
+    getDefaultMiddleware() .concat(authApi.middleware)
+      .concat(workersApi.middleware),
 
 });
 
