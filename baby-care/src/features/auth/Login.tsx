@@ -1,30 +1,35 @@
 import React, { useState } from "react";
 import { useCheckUserMutation } from "./authApi";
-import { useNavigate } from 'react-router-dom';
-import { setTokenToCookie, setUserToCookie } from '../../utils/cookies';
+import { useDispatch } from "react-redux";
+import { setCredentials } from "./authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [login, { isLoading }] = useCheckUserMutation();
   const [form, setForm] = useState({ id: "", email: "" });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-        const response = await login(form).unwrap();
-        if (response.userExists) {
-            setTokenToCookie(response.token); 
-            setUserToCookie(form.email); 
-     
-            navigate(`/otp-verification/${form.email}`); 
-        } else {
-            alert(response.message || "User does not exist."); 
+      const response = await login(form).unwrap();
+      if (response.userExists) {
+        dispatch(setCredentials({ user: form.email, token: response.token, userType: response.userType }));
+        if (response.userType === "regularUser") {
+          navigate(`/otp-verification/${form.email}`);
+        } else if (response.userType === "worker") {
+          navigate("/worker-dashboard");
+        } else if (response.userType === "admin") {
+          navigate("/admin-dashboard");
         }
-    } catch (error:any) {
-        alert(error.data?.message || "שגיאה בהתחברות"); // Improved error handling
+      } else {
+        navigate("/signup");
+      }
+    } catch (error: any) {
+      alert(error.data?.message || "שגיאה בהתחברות");
     }
-};
-
+  };
 
   return (
     <form onSubmit={handleSubmit}>
