@@ -9,14 +9,6 @@ const LoginPage: React.FC = () => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
   const userType = useSelector((state: RootState) => state.auth.userType);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     if (userType === "regularUser") navigate("/user-dashboard");
-  //     else if (userType === "worker") navigate("/worker-dashboard");
-  //     else if (userType === "admin") navigate("/admin-dashboard");
-  //   }
-  // }, [isAuthenticated, userType, navigate]);
-
   return (
     <div>
       <h1>התחברות</h1>

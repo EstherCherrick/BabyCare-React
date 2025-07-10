@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 import { useRegisterMutation } from "./authApi";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
-import { RootState } from "../../app/store";
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const [register] = useRegisterMutation();
   const dispatch = useDispatch();
-  // const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
-
-  // React.useEffect(() => {
-  //   if (isAuthenticated) {
-  //     navigate("/");
-  //   }
-  // }, [isAuthenticated, navigate]);
 
   const [formData, setFormData] = useState({
     id: 0,
