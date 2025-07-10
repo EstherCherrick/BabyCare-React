@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout as logoutAction } from "../features/auth/authSlice";
-import { useLogoutMutation } from "../features/auth/authApi";
+import { logout as logoutAction } from "../app/authSlice";
+import { useLogoutMutation } from "../api/authApi";
 import { RootState } from "../app/store";
 
 const Home: React.FC = () => {
@@ -20,6 +20,9 @@ const Home: React.FC = () => {
     } else {
       navigate("/login");
     }
+  };
+   const navigateToWorkersDashboard = () => {
+    navigate('/workers');
   };
 
   const handleLogout = async () => {

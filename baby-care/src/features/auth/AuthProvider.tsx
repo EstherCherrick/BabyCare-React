@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCredentials, logout } from "./authSlice";
-import { useRefreshTokenMutation } from "./authApi";
+import { setCredentials, logout } from "../../app/authSlice";
+import { useRefreshTokenMutation } from "../../api/authApi";
 import { RootState } from "../../app/store";
 
 const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {

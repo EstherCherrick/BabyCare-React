@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useCheckUserMutation } from "./authApi";
+import { useCheckUserMutation } from "../../api/authApi";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "./authSlice";
+import { setCredentials } from "../../app/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {

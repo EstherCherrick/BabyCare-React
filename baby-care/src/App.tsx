@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import AuthProvider from "./features/auth/AuthProvider";
-import LoginPage from "./pages/LoginPage";
-import SignUp from "./features/auth/SignUp";
+import LoginPage from "./pages/AuthPages/LoginPage";
+import SignUpPage from "./pages/AuthPages/SignUpPage";
 import Home from "./pages/HomePage";
-import OtpVerification from "./pages/OtpVerificationPage";
+import OtpVerification from "./features/auth/OtpVerification";
 import PrivateRoute from "./components/PrivateRoute";
 import UserDashboard from "./pages/Dashboards/UserDashboard";
-import WorkerDashboard from "./pages/Dashboards/WorkerDashboard";
 import AdminDashboard from "./pages/Dashboards/AdminDashboard";
+import WorkerDashboard from "./pages/Dashboards/WorkerDashboard";
 
 const App: React.FC = () => (
   <Provider store={store}>
@@ -19,7 +19,7 @@ const App: React.FC = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/signup" element={<SignUpPage />} /> 
           <Route path="/otp-verification/:email" element={<OtpVerificationWrapper />} />
           <Route
             path="/user-dashboard"

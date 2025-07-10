@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSendVerificationCodeMutation, useValidateOTPMutation } from "../features/auth/authApi";
+import { useSendVerificationCodeMutation, useValidateOTPMutation } from "../../api/authApi";
 
 const OtpVerification: React.FC<{ email: string }> = ({ email }) => {
   const [otp, setOtp] = useState("");
