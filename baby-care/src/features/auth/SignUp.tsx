@@ -36,7 +36,7 @@
 //   const handleSubmit = async (e: React.FormEvent) => {
 //     e.preventDefault();
 //     try {
-//       const response = await register({
+//      const response = await register({
 //         id: formData.id,
 //         babyId: formData.babyId,
 //         name: formData.name,
@@ -53,7 +53,7 @@
 
 //       if (response.token) {
 //         dispatch(setCredentials({ user: formData.email, token: response.token, userType: "regularUser" }));
-//         navigate(`/otp-verification/${formData.email}`);
+//             navigate(`/otp-verification/${formData.email}`); 
 //       } else {
 //         setError("Registration failed. Please try again.");
 //       }
@@ -66,23 +66,23 @@
 //     <div>
 //       <h2>Sign Up</h2>
 //       <form onSubmit={handleSubmit}>
-//         <input name="babyId" onChange={handleChange} placeholder="Baby ID" required />
-//         <input name="name" onChange={handleChange} placeholder="Name" required />
-//         <input name="birthdate" type="date" onChange={handleChange} required />
-//         <select name="gender" onChange={handleChange} value={formData.gender ? "true" : "false"} required>
-//           <option value="" disabled>
-//             בחר מגדר
-//           </option>
-//           <option value="true">זכר</option>
-//           <option value="false">נקבה</option>
-//         </select>
-//         <input name="fatherName" onChange={handleChange} placeholder="Father's Name" required />
-//         <input name="motherName" onChange={handleChange} placeholder="Mother's Name" required />
-//         <input name="address" onChange={handleChange} placeholder="Address" required />
-//         <input name="phone" onChange={handleChange} placeholder="Phone" required />
-//         <input name="email" type="email" onChange={handleChange} placeholder="Email" required />
-//         <input name="weight" type="number" step="0.01" onChange={handleChange} placeholder="Weight" required />
-//         <input name="height" type="number" step="0.01" onChange={handleChange} placeholder="Height" required />
+//  <input name="babyId" onChange={handleChange} placeholder="Baby ID" required />
+//          <input name="name" onChange={handleChange} placeholder="Name" required />
+//          <input name="birthdate" type="date" onChange={handleChange} required />
+//          <select name="gender" onChange={handleChange} value={formData.gender ? "true" : "false"} required>
+//            <option value="" disabled>
+//              בחר מגדר
+//            </option>
+//            <option value="true">זכר</option>
+//            <option value="false">נקבה</option>
+//          </select>
+//          <input name="fatherName" onChange={handleChange} placeholder="Father's Name" required />
+//          <input name="motherName" onChange={handleChange} placeholder="Mother's Name" required />
+//          <input name="address" onChange={handleChange} placeholder="Address" required />
+//          <input name="phone" onChange={handleChange} placeholder="Phone" required />
+//          <input name="email" type="email" onChange={handleChange} placeholder="Email" required />
+//          <input name="weight" type="number" step="0.01" onChange={handleChange} placeholder="Weight" required />
+//          <input name="height" type="number" step="0.01" onChange={handleChange} placeholder="Height" required />
 //         <button type="submit">Sign Up</button>
 //       </form>
 //       {error && <p>{error}</p>}
@@ -93,15 +93,18 @@
 // export default SignUp;
 import React, { useState } from "react";
 import { useRegisterMutation } from "../../api/authApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/authSlice";
+import OtpVerification from "./OtpVerification";
+import '../../styles/login.css';
+import '../../styles/global.css';
 
 const SignUp: React.FC = () => {
-  const navigate = useNavigate();
   const [register] = useRegisterMutation();
   const dispatch = useDispatch();
-
+  const [isOtpVisible, setIsOtpVisible] = useState(false);
+  const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     id: 0,
     babyId: "",
@@ -117,7 +120,6 @@ const SignUp: React.FC = () => {
     height: 0.0,
   });
   const [error, setError] = useState("");
-
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -129,7 +131,7 @@ const SignUp: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-     const response = await register({
+      const response = await register({
         id: formData.id,
         babyId: formData.babyId,
         name: formData.name,
@@ -146,9 +148,8 @@ const SignUp: React.FC = () => {
 
       if (response.token) {
         dispatch(setCredentials({ user: formData.email, token: response.token, userType: "regularUser" }));
-            navigate(`/otp-verification/${formData.email}`); 
-      } else {
-        setError("Registration failed. Please try again.");
+        setMessage("קוד אימות נשלח אליך ברגעים אלו");
+        setIsOtpVisible(true);
       }
     } catch (err: any) {
       setError(err.data?.message || "Registration error.");
@@ -156,30 +157,44 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="signup-card">
+      
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
- <input name="babyId" onChange={handleChange} placeholder="Baby ID" required />
-         <input name="name" onChange={handleChange} placeholder="Name" required />
-         <input name="birthdate" type="date" onChange={handleChange} required />
-         <select name="gender" onChange={handleChange} value={formData.gender ? "true" : "false"} required>
-           <option value="" disabled>
-             בחר מגדר
-           </option>
-           <option value="true">זכר</option>
-           <option value="false">נקבה</option>
-         </select>
-         <input name="fatherName" onChange={handleChange} placeholder="Father's Name" required />
-         <input name="motherName" onChange={handleChange} placeholder="Mother's Name" required />
-         <input name="address" onChange={handleChange} placeholder="Address" required />
-         <input name="phone" onChange={handleChange} placeholder="Phone" required />
-         <input name="email" type="email" onChange={handleChange} placeholder="Email" required />
-         <input name="weight" type="number" step="0.01" onChange={handleChange} placeholder="Weight" required />
-         <input name="height" type="number" step="0.01" onChange={handleChange} placeholder="Height" required />
+        <div className="form-row">
+          <input name="babyId" onChange={handleChange} placeholder="Baby ID" required />
+          <input name="name" onChange={handleChange} placeholder="Name" required />
+        </div>
+        <div className="form-row">
+          <input name="birthdate" type="date" onChange={handleChange} required />
+          <select name="gender" onChange={handleChange} value={formData.gender ? "true" : "false"} required>
+            <option value="" disabled>בחר מגדר</option>
+            <option value="true">זכר</option>
+            <option value="false">נקבה</option>
+          </select>
+        </div>
+        <div className="form-row">
+          <input name="fatherName" onChange={handleChange} placeholder="Father's Name" required />
+          <input name="motherName" onChange={handleChange} placeholder="Mother's Name" required />
+        </div>
+        <div className="form-row">
+          <input name="address" onChange={handleChange} placeholder="Address" required />
+          <input name="phone" onChange={handleChange} placeholder="Phone" required />
+        </div>
+        <div className="form-row">
+          <input name="email" type="email" onChange={handleChange} placeholder="Email" required />
+          <input name="weight" type="number" step="0.01" onChange={handleChange} placeholder="Weight" required />
+        </div>
+        <div className="form-row">
+          <input name="height" type="number" step="0.01" onChange={handleChange} placeholder="Height" required />
+        </div>
         <button type="submit">Sign Up</button>
       </form>
-      {error && <p>{error}</p>}
-    </div>
+            {error && <div className="error-message">{error}</div>}
+      {message && <div className="success-message">{message}</div>}
+      {isOtpVisible && <OtpVerification email={formData.email} />}
+      <p><Link to="/login">sign in</Link></p>    
+       </div>
   );
 };
 

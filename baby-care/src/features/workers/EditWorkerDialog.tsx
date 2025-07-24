@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@mui/material';
-import { Worker } from './types';
+import { Worker } from '../../types/worker';
 import { useUpdateWorkerMutation } from '../../api/workerApi';
 
 interface Props {

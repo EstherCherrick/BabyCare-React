@@ -6,11 +6,11 @@ import AuthProvider from "./features/auth/AuthProvider";
 import LoginPage from "./pages/AuthPages/LoginPage";
 import SignUpPage from "./pages/AuthPages/SignUpPage";
 import Home from "./pages/HomePage";
-import OtpVerification from "./features/auth/OtpVerification";
 import PrivateRoute from "./components/PrivateRoute";
 import UserDashboard from "./pages/Dashboards/UserDashboard";
 import AdminDashboard from "./pages/Dashboards/AdminDashboard";
 import WorkerDashboard from "./pages/Dashboards/WorkerDashboard";
+import OtpVerificationPage from "./pages/AuthPages/OtpVerificationPage";
 
 const App: React.FC = () => (
   <Provider store={store}>
@@ -20,7 +20,6 @@ const App: React.FC = () => (
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} /> 
-          <Route path="/otp-verification/:email" element={<OtpVerificationWrapper />} />
           <Route
             path="/user-dashboard"
             element={
@@ -50,10 +49,5 @@ const App: React.FC = () => (
     </AuthProvider>
   </Provider>
 );
-
-const OtpVerificationWrapper = () => {
-  const { email } = useParams<{ email: string }>();
-  return <OtpVerification email={email || ""} />;
-};
 
 export default App;

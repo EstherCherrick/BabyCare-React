@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+/* Modern glassmorphism login card */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.1),
+    0 16px 32px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Logo integration - Fixed SVG data URI */
+.login-card::before,.signup-card::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='35' fill='%23e0f2fe'/%3E%3Ccircle cx='40' cy='32' r='8' fill='%230ea5e9'/%3E%3Cellipse cx='40' cy='50' rx='10' ry='12' fill='%230ea5e9' opacity='0.7'/%3E%3Ccircle cx='40' cy='40' r='35' stroke='%230ea5e9' stroke-width='2' fill='none'/%3E%3C/svg%3E") center/contain no-repeat;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+/* Form heading */
+.login-card::after,
+.signup-card::after  {
+  content: 'טיפת חלב';
+  position: absolute;
+  top: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #0ea5e9;
+  text-align: center;
+  width: 100%;
+}
+
+/* Add margin to form to accommodate logo and title */
+.login-card form {
+  margin-top: 60px;
+  width: 100%;
+}
+
+/* Modern input styling */
+input {
+  width: 100%;
+  padding: 16px 20px;
+  margin: 12px 0;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  background: rgba(248, 250, 252, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  text-align: left;
+
+}
+
+input:focus {
+  border-color: #0ea5e9;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 0 0 4px rgba(14, 165, 233, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  direction: ltr;
+  text-align: left;
+}
+
+  input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+    direction: ltr;
+
+  }
+
+  /* Modern button styling */
+  button {
+    width: 100%;
+    padding: 16px 24px;
+    margin: 20px 0 16px 0;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+  }
+
+  button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+    background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+  }
+
+  button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.3);
+  }
+
+  button:disabled {
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Link styling */
+  .login-card p {
+    margin: 20px 0 0 0;
+    font-size: 14px;
+    color: #64748b;
+    text-align: center;
+  }
+
+  .login-card a ,.signup-card a{
+    color: #0ea5e9;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .login-card a:hover ,.signup-card a:hover{
+    color: #0284c7;
+    text-decoration: underline;
+  }
+
+/* Modern glassmorphism signup card */
+.signup-card {
+  width: 100%;
+  max-width: 800px; /* Larger card */
+  padding: 40px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.1),
+    0 16px 32px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+}
+  
+/* Form row styling for two inputs in a row */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.form-row input,
+.form-row select {
+  width: 48%; /* Two inputs in a row */
+  padding: 16px 20px;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 16px;
+  background: rgba(248, 250, 252, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+}
+

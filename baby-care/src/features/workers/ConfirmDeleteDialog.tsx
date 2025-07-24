@@ -3,7 +3,7 @@ import {
   Dialog, DialogTitle, DialogContent, DialogActions,
   Button, Typography
 } from '@mui/material';
-import { Worker } from './types';
+import { Worker } from '../../types/worker';
 
 interface Props {
   open: boolean;
