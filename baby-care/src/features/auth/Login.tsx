@@ -21,13 +21,14 @@ const Login: React.FC = () => {
     try {
       const response = await login(form).unwrap();
       if (response.userExists) {
-        dispatch(setCredentials({ user: form.email, token: response.token, userType: response.userType }));
-
         if (response.userType === "admin") {
+          dispatch(setCredentials({ user: form.email, token: response.token, userType: response.userType}));
           navigate("/admin-dashboard");
         } else if (response.userType === "worker") {
+          dispatch(setCredentials({ user: form.email, token: response.token, userType: response.userType}));
           navigate("/worker-dashboard");
         } else if (response.userType === "regularUser") {
+          dispatch(setCredentials({ user: form.email, token: response.token, userType: response.userType ,babyId: response.babyId  }));
           await sendVerificationCode({ email: form.email });
           setMessage("קוד אימות נשלח אליך ברגעים אלו"); 
           setIsOtpVisible(true); 

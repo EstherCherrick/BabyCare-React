@@ -7,15 +7,15 @@ export interface Appointment {
   workerName?: string;
   workerType?: string;
   appointmentDate: string;
-  startTime: string; 
+  startTime: string;
   endTime?: string;
 }
 
 export interface BookAppointmentRequest {
   babyId: string;
   workerType: string;
-  date: string; 
-  time: string; 
+  date: string;
+  time: string;
 }
 
 export const appointmentsApi = createApi({
@@ -85,6 +85,13 @@ export const appointmentsApi = createApi({
       }),
       providesTags: [{ type: 'Appointments' }],
     }),
+    getAppointmentsHistory: builder.query<any[], string>({
+      query: (babyId) => ({
+        url: `https://localhost:7047/api/Appointments/history/${babyId}`,
+        method: 'GET',
+      }),
+      providesTags: [{ type: 'Appointments' }],
+    }),
   }),
 });
 
@@ -97,4 +104,5 @@ export const {
   useBookVaccineAppointmentMutation,
   useBookDoctorAppointmentMutation,
   useGetUserAppointmentsQuery,
+  useGetAppointmentsHistoryQuery,
 } = appointmentsApi;
