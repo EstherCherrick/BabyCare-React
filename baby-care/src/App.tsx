@@ -10,7 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UserDashboard from "./pages/Dashboards/UserDashboard";
 import AdminDashboard from "./pages/Dashboards/AdminDashboard";
 import WorkerDashboard from "./pages/Dashboards/WorkerDashboard";
-import OtpVerificationPage from "./pages/AuthPages/OtpVerificationPage";
+import AppointmentsPage from "./pages/Appointments/AppointmentPage";
 
 const App: React.FC = () => (
   <Provider store={store}>
@@ -20,6 +20,14 @@ const App: React.FC = () => (
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUpPage />} /> 
+          <Route
+            path="/appointments"
+            element={
+              <PrivateRoute allowed={["regularUser"]}>
+                <AppointmentsPage />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/user-dashboard"
             element={

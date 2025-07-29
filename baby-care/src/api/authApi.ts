@@ -45,9 +45,8 @@ export const authApi = createApi({
     }),
     validateOTP: builder.mutation({
       query: ({ email, otp }) => ({
-        url: "Login/validate",
+        url: `Login/validate?email=${encodeURIComponent(email)}&otp=${encodeURIComponent(otp)}`,
         method: "POST",
-        params: { email, otp },
       }),
     }),
   }),

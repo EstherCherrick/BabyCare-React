@@ -7,6 +7,7 @@ interface AuthState {
   token: string | null;
   userType: UserType;
   isAuthenticated: boolean;
+  babyId?: string | null;
 }
 
 const initialState: AuthState = {
@@ -14,6 +15,7 @@ const initialState: AuthState = {
   token: null,
   userType: null,
   isAuthenticated: false,
+  babyId: null,
 };
 
 const authSlice = createSlice({
@@ -22,18 +24,22 @@ const authSlice = createSlice({
   reducers: {
     setCredentials: (
       state,
-      action: PayloadAction<{ user: string; token: string; userType: UserType }>
+      action: PayloadAction<{ user: string; token: string; userType: UserType; babyId?: string }>
     ) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.userType = action.payload.userType;
       state.isAuthenticated = true;
+      if (action.payload.babyId) {
+        state.babyId = action.payload.babyId;
+      }
     },
     logout: (state) => {
       state.user = null;
       state.token = null;
       state.userType = null;
       state.isAuthenticated = false;
+      state.babyId = null;
     },
   },
 });

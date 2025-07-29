@@ -24,13 +24,12 @@ export const workersApi = createApi({
       }),
       invalidatesTags: ['Worker'],
     }),
-    updateWorker: builder.mutation<void, Worker>({
-      query: (worker) => ({
-        url: `Worker/${worker.workerId}`,
+    updateWorker: builder.mutation({
+      query: ({ workerId, ...patch }) => ({
+        url: `/WorkerManagement/${workerId}`,
         method: 'PUT',
-        body: worker,
+        body: patch,
       }),
-      invalidatesTags: ['Worker'],
     }),
     deleteWorker: builder.mutation<void, { id: string; name: string }>({
       query: ({ id, name }) => ({
@@ -42,6 +41,9 @@ export const workersApi = createApi({
     getAmountOfEachType: builder.query<Record<string, number>, void>({
       query: () => 'Worker/getAmountOfEachType',
     }),
+    getWorkerAppointments: builder.query({
+      query: (workerId) => `/WorkerManagement/getWorkerAppointments/${workerId}`,
+    }),
   }),
 });
 
@@ -52,4 +54,5 @@ export const {
   useUpdateWorkerMutation,
   useDeleteWorkerMutation,
   useGetAmountOfEachTypeQuery,
+  useGetWorkerAppointmentsQuery,
 } = workersApi;

@@ -1,4 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+
+import { appointmentsApi } from '../api/appointmentsApi';
 import authReducer from "./authSlice";
 import { authApi } from "../api/authApi";
 import { workersApi } from '../api/workerApi';
@@ -9,12 +11,14 @@ export const store = configureStore({
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
     [workersApi.reducerPath]: workersApi.reducer,
+    [appointmentsApi.reducerPath]: appointmentsApi.reducer,
     [babiesApi.reducerPath]: babiesApi.reducer, 
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authApi.middleware)
       .concat(workersApi.middleware)
+      .concat(appointmentsApi.middleware)
       .concat(babiesApi.middleware), 
 });
 

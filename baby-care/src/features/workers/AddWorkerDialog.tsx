@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, TextField, DialogActions, Button, Stack } from '@mui/material';
 import { useAddWorkerMutation } from '../../api/workerApi';
 
 interface Props {
@@ -45,18 +45,19 @@ const AddWorkerDialog: React.FC<Props> = ({ open, onClose }) => {
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>הוספת עובד חדש</DialogTitle>
       <DialogContent>
-        <TextField label="תעודת זהות" name="workerId" fullWidth onChange={handleChange} />
-        <TextField label="שם מלא" name="name" fullWidth onChange={handleChange} />
-        <TextField label="תאריך לידה" name="birthdate" fullWidth type="date" onChange={handleChange} InputLabelProps={{ shrink: true }} />
-        <TextField label="טלפון" name="phone" fullWidth onChange={handleChange} />
-        <TextField label="אימייל" name="email" fullWidth onChange={handleChange} />
-        <TextField label="תפקיד" name="workerType" fullWidth onChange={handleChange} />
-        <TextField label="תאריך התחלה" name="startDate" fullWidth type="date" onChange={handleChange} InputLabelProps={{ shrink: true }} />
-        <TextField label="שנות ניסיון" name="experience" fullWidth type="number" onChange={handleChange} />
-
+        <Stack spacing={2}>
+          <TextField label="תעודת זהות" name="workerId" fullWidth onChange={handleChange} />
+          <TextField label="שם מלא" name="name" fullWidth onChange={handleChange} />
+          <TextField label="תאריך לידה" name="birthdate" fullWidth type="date" onChange={handleChange} InputLabelProps={{ shrink: true }} />
+          <TextField label="טלפון" name="phone" fullWidth onChange={handleChange} />
+          <TextField label="אימייל" name="email" fullWidth onChange={handleChange} />
+          <TextField label="תפקיד" name="workerType" fullWidth onChange={handleChange} />
+          <TextField label="תאריך התחלה" name="startDate" fullWidth type="date" onChange={handleChange} InputLabelProps={{ shrink: true }} />
+          <TextField label="שנות ניסיון" name="experience" fullWidth type="number" onChange={handleChange} />
+        </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>בטל</Button>
+        <Button onClick={onClose} sx={{ color: '#fff', bgcolor: '#757575', '&:hover': { bgcolor: '#616161' } }}>בטל</Button>
         <Button onClick={handleSubmit} variant="contained" color="primary">שמור</Button>
       </DialogActions>
     </Dialog>
